@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fan.fanbox.mapper.PermissionMapper">
+
+
+    <select id="selectPermsByUserId" resultType="java.lang.String">
+        SELECT permission_key
+        FROM user_role
+                 LEFT JOIN role ON user_role.role_id=role.id
+                 LEFT JOIN role_permission ON role_permission.role_id=role.id
+                 LEFT JOIN permission ON permission.id=role_permission.permission_id
+        WHERE user_id = #{userId}
+
+    </select>
+</mapper>
